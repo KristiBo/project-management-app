@@ -1,0 +1,23 @@
+@import '~antd/dist/antd.less';
+
+.App {
+  text-align: center;
+  scroll-behavior: smooth;
+}
+
+.ant-layout-header {
+      position: fixed;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+@media screen and (max-width:690px){
+  .ant-layout-header {
+    padding: 0 10px ;
+  }
+  	.ant-col-offset-8 {
+    margin-left: 0
+}
+}

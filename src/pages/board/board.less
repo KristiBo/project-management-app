@@ -1,0 +1,50 @@
+@import './../../assets/less/variables.less';
+.board-wrap {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.columns-wrap {
+  box-sizing: border-box;
+  margin: 0;
+  max-width: 100%;
+  height: calc(100vh - 265px);
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  &::-webkit-scrollbar {
+    height: 12px;
+    background-color: @bg-gray;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: @gray;
+    border-radius: 6px;
+  }
+}
+.inner-wrap {
+  box-sizing: border-box;
+  display: flex;
+  flex-grow: 1;
+}
+.new-column-btn {
+  margin-bottom: 20px;
+}
+.columns-inner-wrap {
+  width: fit-content;
+  gap: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+}
+@media screen and (max-width: 700px) {
+  .inner-wrap {
+    align-items: center;
+  }
+}
+@media screen and (max-width: 440px) {
+  .columns-wrap {
+    height: calc(100vh - 315px);
+  }
+}
