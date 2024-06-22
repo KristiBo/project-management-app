@@ -5,27 +5,33 @@
   max-height: calc(100vh - 335px);
   width: fit-content;
   border-radius: 10px;
+
   .ant-card-head {
     border-bottom: none;
   }
+
   .ant-card-body {
     padding: 10px;
     display: flex;
     max-height: calc(100vh - 450px);
     overflow-y: auto;
+
     &::-webkit-scrollbar {
       width: 4px;
       background-color: @bg-gray;
     }
+
     &::-webkit-scrollbar-thumb {
       background-color: @gray;
       border-radius: 2px;
     }
   }
+
   .ant-card-actions {
     border-top: none;
   }
 }
+
 .column-title {
   word-wrap: break-word;
   width: 210px;
@@ -35,6 +41,7 @@
 .column-title-input {
   padding-right: 50px;
 }
+
 .check-column-icon,
 .cancel-column-icon {
   position: absolute;
@@ -46,20 +53,25 @@
 .cancel-column-icon {
   left: 205px;
 }
+
 .ant-card-head {
   padding: 0 10px;
 }
+
 .ant-card-head-title {
   white-space: unset;
 }
+
 .ant-card-actions {
   li {
     margin-top: 0;
   }
 }
+
 .btn-column-wrap {
   display: flex;
 }
+
 @media screen and (max-width: 440px) {
   .column .ant-card-body {
     max-height: calc(100vh - 500px);

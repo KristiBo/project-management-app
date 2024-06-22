@@ -49,9 +49,9 @@ export const TRANSLATIONS_RU = {
   titleDescription:
     'Позвольте вашей команде работать эффективнее, мы можем оптимизировать их процесс, создавайте командные связи и наблюдайте за ростом производительности!',
   course_description_1:
-    'Курс предназначен для студентов RS School набора 2021Q3 , которые прошли RS School stage #2, а также для новых студентов, которые имеют знания и практический опыт использования следующих технологий и инструментов:',
+    'Курс предназначен для студентов RS School, которые прошли RS School stage#2, а также для новых студентов, которые имеют знания и практический опыт использования следующих технологий и инструментов: ',
   course_description_2:
-    'JavaScript, typescript, Git, GitHub (clone, add, commit, push, pull, merge, rebase, work with Pull Request), npm, webpack, CSS3 / HTML, Chrome DevTools Figma, Понимание концепции REST API.',
+    'JavaScript, TypeScript, Git, GitHub (clone, add, commit, push, pull, merge, rebase, work with Pull Request), npm, Webpack, CSS3 / HTML, Chrome DevTools, Figma, понимание концепции REST API.',
   course_description_3: 'Бесплатное обучение',
   course_btn: 'Хочу присоединиться!',
   about: 'О приложении',

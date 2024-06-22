@@ -1,4 +1,5 @@
 import { AxiosResponse } from 'axios';
+
 import api from './api';
 import { AuthResponse, IUser } from './types/types';
 

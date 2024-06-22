@@ -1,16 +1,18 @@
 import { useEffect } from 'react';
-import { Button, Form, Input, message } from 'antd';
+import { useState } from 'react';
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 import { useTranslation } from 'react-i18next';
+import { Button, Form, Input, message } from 'antd';
+
 import { useAppDispatch } from '../../hooks';
 import { IAuth, setAuthData } from '../../features/sign-in/signInSlice';
-import jwt_decode from 'jwt-decode';
-import '../../features/sign-up/sign-up.less';
-import { useState } from 'react';
-import { IRegistrationData } from '../../interfaces/interfaces';
 import { CustomModal } from '../../features/modal/modal';
 import UserService from '../../api-services/UserService';
 import { setProfile } from './profileSlice';
+import { IRegistrationData } from '../../interfaces/interfaces';
+
+import '../../features/sign-up/sign-up.less';
 
 const formItemLayout = {
   labelCol: {
@@ -22,6 +24,7 @@ const formItemLayout = {
     sm: { span: 16 },
   },
 };
+
 const tailFormItemLayout = {
   wrapperCol: {
     xs: {
@@ -73,6 +76,7 @@ export const Profile = () => {
   const onFinish = async (values: IRegistrationData) => {
     const { userName, login, password } = values;
     setConfirmLoading(true);
+
     try {
       await UserService.updateUser(userId, userName, login, password);
       message.success(t('updateUserMsg'));
@@ -120,6 +124,7 @@ export const Profile = () => {
         >
           <Input />
         </Form.Item>
+
         <Form.Item
           name="login"
           label={t('login')}
@@ -134,6 +139,7 @@ export const Profile = () => {
         >
           <Input autoComplete="username" />
         </Form.Item>
+
         <Form.Item
           name="password"
           label={t('password')}
@@ -148,6 +154,7 @@ export const Profile = () => {
         >
           <Input.Password autoComplete="new-password" />
         </Form.Item>
+
         <Form.Item
           name="confirm"
           label={t('confirmPassword')}
@@ -170,6 +177,7 @@ export const Profile = () => {
         >
           <Input.Password autoComplete="new-password" />
         </Form.Item>
+
         <Form.Item
           {...tailFormItemLayout}
           extra={[

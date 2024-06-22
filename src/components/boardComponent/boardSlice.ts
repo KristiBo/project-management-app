@@ -1,4 +1,5 @@
 import { createAction, createSlice } from '@reduxjs/toolkit';
+
 import { IBoard } from '../../api-services/types/types';
 import { IBoardDispatch } from '../../interfaces/interfaces';
 import { RootState } from '../../store';
@@ -22,17 +23,21 @@ export const boards = createSlice({
     builder.addCase(newBoardList, (state, action) => {
       state.boardsList = action.payload;
     });
+
     builder.addCase(boardModalDataAction, (state, action) => {
       state.boardModalData = action.payload;
     });
+
     builder.addCase(currentData, (state, action) => {
       state.currentData = action.payload;
     });
+
     builder.addCase(currentBoardId, (state, action) => {
       state.boardId = action.payload;
     });
   },
 });
+
 export const selectBoardList = (state: RootState) => state.boards.boardsList;
 export const selectBoardModalData = (state: RootState) => state.boards.boardModalData;
 export const selectCurrentBoardId = (state: RootState) => state.boards.boardId;

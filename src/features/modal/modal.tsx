@@ -1,9 +1,12 @@
-import { Button, message, Modal } from 'antd';
-import axios from 'axios';
 import React, { useRef, useState } from 'react';
-import type { DraggableData, DraggableEvent } from 'react-draggable';
+import { useNavigate } from 'react-router-dom';
 import Draggable from 'react-draggable';
+import type { DraggableData, DraggableEvent } from 'react-draggable';
+import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 import { useTranslation } from 'react-i18next';
+import { Button, message, Modal } from 'antd';
+
 import BoardService from '../../api-services/BoardService';
 import ColumnService from '../../api-services/ColumnService';
 import UserService from '../../api-services/UserService';
@@ -12,10 +15,10 @@ import { selectCurrentBoardId } from '../../components/boardComponent/boardSlice
 import { selectCurrentColumn } from '../../components/columnComponent/columnSlice';
 import { selectCurrentTask } from '../../components/task/taskSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import jwt_decode from 'jwt-decode';
 import { IAuth } from '../sign-in/signInSlice';
-import { useNavigate } from 'react-router-dom';
+
 import './modal.less';
+
 export const CustomModal: React.FC<{
   open: boolean;
   cancel: () => void;
@@ -39,12 +42,15 @@ export const CustomModal: React.FC<{
   const task = useAppSelector(selectCurrentTask);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
   const onStart = (_event: DraggableEvent, uiData: DraggableData) => {
     const { clientWidth, clientHeight } = window.document.documentElement;
     const targetRect = draggleRef.current?.getBoundingClientRect();
+
     if (!targetRect) {
       return;
     }
+
     setBounds({
       left: -targetRect.left + uiData.x,
       right: clientWidth - (targetRect.right - uiData.x),
@@ -52,6 +58,7 @@ export const CustomModal: React.FC<{
       bottom: clientHeight - (targetRect.bottom - uiData.y),
     });
   };
+
   const deleteItem = async () => {
     switch (props.title) {
       case t('deleteBoard'):
@@ -70,6 +77,7 @@ export const CustomModal: React.FC<{
           }
         }
         break;
+
       case t('deleteColumn'):
         try {
           setConfirmLoading(true);
@@ -86,6 +94,7 @@ export const CustomModal: React.FC<{
           }
         }
         break;
+
       case t('deleteUser'):
         try {
           setConfirmLoading(true);
@@ -106,6 +115,7 @@ export const CustomModal: React.FC<{
           dispatch({ type: 'currentColumn', payload: {} });
         }
         break;
+
       case t('deleteTask'):
         try {
           setConfirmLoading(true);
@@ -121,11 +131,14 @@ export const CustomModal: React.FC<{
           }
         }
         break;
+
       default:
         break;
     }
+
     props.cancel();
   };
+
   return (
     <Modal
       title={

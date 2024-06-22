@@ -16,6 +16,7 @@ export const Main = () => {
   const boardsList = useAppSelector(selectBoardList);
   const boardData = useAppSelector(selectBoardModalData);
   const [open, setOpen] = useState(false);
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await BoardService.getBoards();
@@ -32,9 +33,11 @@ export const Main = () => {
       ></BoardComponent>
     ));
   };
+
   const handleCancel = () => {
     setOpen(false);
   };
+
   const showModal = () => {
     setOpen(true);
     dispatch({
@@ -42,15 +45,18 @@ export const Main = () => {
       payload: { props: 'board', data: { title: '', description: '' } },
     });
   };
+
   return (
     <div className="main-wrap">
       <Button onClick={showModal} className="new-board-btn">
         {t('newBoard')}
         <PlusOutlined />
       </Button>
+
       <CustomModal open={open} cancel={handleCancel} footer={false} title={t('newBoard')}>
         <CreateBoardForm cancel={handleCancel} data={{ title: '', description: '' }} />
       </CustomModal>
+
       {renderBoards()}
     </div>
   );
