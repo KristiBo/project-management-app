@@ -1,12 +1,15 @@
-import { Button, Card } from 'antd';
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
-import { useAppDispatch } from '../../hooks';
-import { CustomModal } from '../../features/modal/modal';
-import { CreateBoardForm } from '../createBoard';
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Button, Card } from 'antd';
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+
+import { useAppDispatch } from '../../hooks';
+import { CustomModal } from '../../features/modal/modal';
+import { CreateBoardForm } from '../createBoard';
+
 import './boardComponent.less';
+
 export const BoardComponent = (props: {
   props: { boardId: string; title: string; description: string };
 }) => {
@@ -20,6 +23,7 @@ export const BoardComponent = (props: {
 
   const handleClick = (e: React.SyntheticEvent) => {
     dispatch({ type: 'currentBoardId', payload: props.props.boardId });
+
     if (
       board.current?.contains(e.target as Node) &&
       !del.current?.contains(e.target as Node) &&
@@ -27,10 +31,13 @@ export const BoardComponent = (props: {
     )
       navigate(`/boards/:${props.props.boardId}`);
   };
+
   const { t } = useTranslation();
+
   const handleCancel = () => {
     setOpen(false);
   };
+
   const closeConfirm = () => {
     setOpenConfirm(false);
   };

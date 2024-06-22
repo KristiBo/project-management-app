@@ -1,11 +1,13 @@
-import { Button, Card } from 'antd';
-import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Button, Card } from 'antd';
+
 import img from './../../assets/images/w-pic.png';
 import logos from './../../assets/images/course-pic.svg';
 import './welcome.less';
+
 export const Welcome = () => {
   const { t } = useTranslation();
+
   const developers = [
     {
       name: t('alina'),
@@ -20,6 +22,7 @@ export const Welcome = () => {
       description: [t('kristinaDesc1'), t('kristinaDesc2'), t('kristinaDesc3'), t('kristinaDesc4')],
     },
   ];
+
   const appDescriptions = [
     { title: t('localization'), description: t('localizationDesc') },
     { title: t('noLimit'), description: t('noLimitDesc') },
@@ -43,6 +46,7 @@ export const Welcome = () => {
       );
     });
   };
+
   const developerCard = () => {
     return developers.map((developer) => {
       return (
@@ -56,6 +60,7 @@ export const Welcome = () => {
       );
     });
   };
+
   return (
     <div className="welcome-wrap">
       <section className="welcome-section">
@@ -70,10 +75,12 @@ export const Welcome = () => {
           <img src={img}></img>
         </div>
       </section>
+
       <section className="developers">
         <h3>{t('team')}</h3>
         <div className="developers-wrap">{developerCard()}</div>
       </section>
+
       <section className="rs-react-course">
         <h3>{t('courseTitle')}</h3>
         <div className="course-wrap">
@@ -84,13 +91,14 @@ export const Welcome = () => {
             <strong>{t('course_description_3')}</strong>
             <br />
             <Button type="primary" size="large" className="course-btn">
-              <a href="https://rs.school/react/" target={'blank'}>
+              <a href="https://rs.school/reactjs/" target={'blank'}>
                 {t('course_btn')}
               </a>
             </Button>
           </div>
         </div>
       </section>
+
       <section className="about" id="about">
         <h3>{t('about')}</h3>
         <div className="about-wrap">{descriptionsCads()}</div>

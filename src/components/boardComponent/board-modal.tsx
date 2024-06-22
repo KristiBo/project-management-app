@@ -1,16 +1,18 @@
-import { Button, Modal, Form, Input, message } from 'antd';
 import React, { useRef, useState } from 'react';
-import type { DraggableData, DraggableEvent } from 'react-draggable';
-import { EditOutlined } from '@ant-design/icons';
+import axios from 'axios';
 import Draggable from 'react-draggable';
+import type { DraggableData, DraggableEvent } from 'react-draggable';
+import { useTranslation } from 'react-i18next';
+import { Button, Modal, Form, Input, message } from 'antd';
+import { EditOutlined } from '@ant-design/icons';
 import { PlusOutlined } from '@ant-design/icons';
+
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { selectCurrentBoardId, selectCurrentData } from './boardSlice';
-import { useTranslation } from 'react-i18next';
-import './boardComponent.less';
 import BoardService from '../../api-services/BoardService';
-import axios from 'axios';
 import { IBoard } from '../../api-services/types/types';
+
+import './boardComponent.less';
 
 export const BoardModal: React.FC<{
   props: string;
@@ -27,15 +29,19 @@ export const BoardModal: React.FC<{
   const titleInvalidMsg = t('titleInvalidMsg');
   const descriptionMsg = t('descriptionMsg');
   const titleMsg = t('titleMsg');
+
   const showModal = () => {
     dispatch({ type: 'isBoardModalAction', payload: true });
     dispatch({ type: 'currentData', payload: props });
   };
-  const handleCancel = (e: React.MouseEvent<HTMLElement>) => {
+
+  const handleCancel = () => {
     dispatch({ type: 'isBoardModalAction', payload: false });
   };
+
   const onFinish = async (values: IBoard) => {
     setConfirmLoading(true);
+
     try {
       if (!!Object.values(data.data).filter((elem) => elem !== '').length) {
         const response = await BoardService.updateBoard(boardId, values.title, values.description);
@@ -61,9 +67,11 @@ export const BoardModal: React.FC<{
   const onStart = (_event: DraggableEvent, uiData: DraggableData) => {
     const { clientWidth, clientHeight } = window.document.documentElement;
     const targetRect = draggleRef.current?.getBoundingClientRect();
+
     if (!targetRect) {
       return;
     }
+
     setBounds({
       left: -targetRect.left + uiData.x,
       right: clientWidth - (targetRect.right - uiData.x),
@@ -71,6 +79,7 @@ export const BoardModal: React.FC<{
       bottom: clientHeight - (targetRect.bottom - uiData.y),
     });
   };
+
   return (
     <>
       {props.props === 'header' && (
@@ -78,17 +87,20 @@ export const BoardModal: React.FC<{
           {t('newBoard')} <PlusOutlined />
         </Button>
       )}
+
       {props.props === 'main' && (
         <Button onClick={showModal} className="new-board-btn">
           {t('newBoard')}
           <PlusOutlined />
         </Button>
       )}
+
       {props.props === 'board' && (
         <Button onClick={showModal} type="text">
           <EditOutlined />
         </Button>
       )}
+
       <Modal
         title={
           <div
@@ -142,6 +154,7 @@ export const BoardModal: React.FC<{
           >
             <Input value={data.data.title} />
           </Form.Item>
+
           <Form.Item
             label={t('description')}
             name="description"
@@ -149,6 +162,7 @@ export const BoardModal: React.FC<{
           >
             <Input value={data.data.description} />
           </Form.Item>
+
           <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
             <Button className="back" onClick={handleCancel}>
               {t('back')}

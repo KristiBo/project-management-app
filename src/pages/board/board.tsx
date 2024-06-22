@@ -1,20 +1,22 @@
-import { Button } from 'antd';
 import { useEffect, useState } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Button } from 'antd';
+import { PlusOutlined, ArrowLeftOutlined } from '@ant-design/icons';
+
 import { ColumnComponent } from '../../components/columnComponent/column-conponent';
 import {
   selectColumnModalData,
   selectColumnsList,
 } from '../../components/columnComponent/columnSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { PlusOutlined, ArrowLeftOutlined } from '@ant-design/icons';
-import './board.less';
 import { CustomModal } from '../../features/modal/modal';
 import { CreateColumnForm } from '../../components/createColumn';
 import ColumnService from '../../api-services/ColumnService';
-import { NavLink, useLocation } from 'react-router-dom';
 import { sortColumn } from '../../components/columnComponent/utils';
 import { selectTaskModalData } from '../../components/task/taskSlice';
+
+import './board.less';
 
 export const Board = () => {
   const { t } = useTranslation();
@@ -25,6 +27,7 @@ export const Board = () => {
   const columnData = useAppSelector(selectColumnModalData);
   const taskData = useAppSelector(selectTaskModalData);
   const [open, setOpen] = useState(false);
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await ColumnService.getColumns(id);
@@ -41,9 +44,11 @@ export const Board = () => {
       ></ColumnComponent>
     ));
   };
+
   const handleCancel = () => {
     setOpen(false);
   };
+
   const showModal = () => {
     setOpen(true);
     dispatch({
@@ -51,6 +56,7 @@ export const Board = () => {
       payload: { props: 'column', data: { title: '' } },
     });
   };
+
   return (
     <div className="columns-wrap">
       <div className="btn-column-wrap">
@@ -60,6 +66,7 @@ export const Board = () => {
             {t('back')}
           </Button>
         </NavLink>
+
         <Button onClick={showModal} className="new-column-btn">
           {t('newColumn')}
           <PlusOutlined />

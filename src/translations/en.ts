@@ -48,9 +48,9 @@ export const TRANSLATIONS_EN = {
   titleDescription:
     'Lets get your team working more effective! We can streamline their process, create team bonds and watch productivity soar!',
   course_description_1:
-    'The course is intended for RS School students who have passed RS School stage #2, as well as for new students who have knowledge and practical experience in using the following technologies and tools:',
+    'The course is intended for RS School students who have passed RS School stage#2, as well as for new students who have knowledge and practical experience in using the following technologies and tools: ',
   course_description_2:
-    'JavaScript, typescript, Git, GitHub (clone, add, commit, push, pull, merge, rebase, work with Pull Request), npm, webpack, CSS3 / HTML, Chrome DevTools Figma, Understanding the concept of REST API.',
+    'JavaScript, TypeScript, Git, GitHub (clone, add, commit, push, pull, merge, rebase, work with Pull Request), npm, Webpack, CSS3 / HTML, Chrome DevTools, Figma, understanding the concept of REST API.',
   course_description_3: 'Learning is free.',
   course_btn: 'I want to join ',
   about: 'About app',

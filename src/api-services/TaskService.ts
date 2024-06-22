@@ -1,4 +1,5 @@
 import { AxiosResponse } from 'axios';
+
 import api from './api';
 import { ITask } from './types/types';
 
@@ -6,9 +7,11 @@ export default class TaskService {
   static getTasks(boardId: string, columnId: string): Promise<AxiosResponse<ITask[]>> {
     return api.get<ITask[]>(`/boards/${boardId}/columns/${columnId}/tasks`);
   }
+
   static getTask(boardId: string, columnId: string, taskId: string): Promise<AxiosResponse<ITask>> {
     return api.get<ITask>(`/boards/${boardId}/columns/${columnId}/tasks/${taskId}`);
   }
+
   static createTask(
     userId: string,
     boardId: string,
@@ -22,6 +25,7 @@ export default class TaskService {
       description,
     });
   }
+
   static deleteTask(
     boardId: string,
     columnId: string,

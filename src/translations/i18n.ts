@@ -18,5 +18,7 @@ i18n
       },
     },
   });
+
 const lang = localStorage.getItem('i18nextLng') || 'en';
+
 i18n.changeLanguage(lang);

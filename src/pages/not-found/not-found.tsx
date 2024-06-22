@@ -1,10 +1,11 @@
-import React from 'react';
-import './not-found.less';
-import img from './../../assets/images/not-found.svg';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'antd';
-import { useNavigate } from 'react-router-dom';
 import { ArrowLeftOutlined } from '@ant-design/icons';
+
+import img from './../../assets/images/not-found.svg';
+import './not-found.less';
+
 export const NotFound = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();

@@ -1,7 +1,8 @@
-import { Form, Input, Button, message } from 'antd';
-import axios from 'axios';
 import { useState } from 'react';
+import axios from 'axios';
 import { useTranslation } from 'react-i18next';
+import { Form, Input, Button, message } from 'antd';
+
 import BoardService from '../api-services/BoardService';
 import { IBoard } from '../api-services/types/types';
 import { useAppSelector, useAppDispatch } from '../hooks';
@@ -16,12 +17,14 @@ export const CreateBoardForm = (props: {
   const dispatch = useAppDispatch();
   const [confirmLoading, setConfirmLoading] = useState(false);
   const { t } = useTranslation();
+
   const titleMsg = t('titleMsg');
   const descriptionMsg = t('descriptionMsg');
   const titleInvalidMsg = t('titleInvalidMsg');
 
   const onFinish = async (values: IBoard) => {
     setConfirmLoading(true);
+
     try {
       if (!!Object.values(data.data).filter((elem) => elem !== '').length) {
         const response = await BoardService.updateBoard(boardId, values.title, values.description);
@@ -66,6 +69,7 @@ export const CreateBoardForm = (props: {
       >
         <Input />
       </Form.Item>
+
       <Form.Item
         label={t('description')}
         name="description"
@@ -73,6 +77,7 @@ export const CreateBoardForm = (props: {
       >
         <Input />
       </Form.Item>
+
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
         <Button className="back" onClick={props.cancel}>
           {t('back')}

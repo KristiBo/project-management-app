@@ -1,9 +1,13 @@
-import { Footer } from 'antd/lib/layout/layout';
 import { useTranslation } from 'react-i18next';
+import { Footer } from 'antd/lib/layout/layout';
+
 import image from './../../assets/images/rs_school_js.svg';
+
 import './footer.less';
+
 export const FooterLayout = () => {
   const { t } = useTranslation();
+
   return (
     <>
       <Footer style={{ textAlign: 'center', padding: 0 }}>
@@ -14,6 +18,7 @@ export const FooterLayout = () => {
                 {t('kristina')}
               </a>
             </li>
+
             <li>
               <a href="https://github.com/Nevold" target={'blank'}>
                 {t('andrei')}

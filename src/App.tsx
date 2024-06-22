@@ -1,26 +1,39 @@
+import { useEffect } from 'react';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import jwtDecode, { JwtPayload } from 'jwt-decode';
 import { Layout } from 'antd';
+const { Content } = Layout;
+
 import { HeaderLayout } from './features/header/header';
 import { FooterLayout } from './features/footer/footer';
 import { SignIn } from './features/sign-in/sign-in';
 import { SignUp } from './features/sign-up/sign-up';
-import './translations/i18n';
-import './App.less';
 import { Main } from './pages/main/main';
 import { Board } from './pages/board/board';
 import { NotFound } from './pages/not-found/not-found';
-import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { Welcome } from './pages/welcome/welcome';
 import { PrivateRoute } from './PrivateRoute';
 import { Profile } from './pages/profile/profile';
 import { Start } from './pages/start/start';
-import { useEffect, useState } from 'react';
-import jwtDecode, { JwtPayload } from 'jwt-decode';
-const { Content } = Layout;
+
+import './translations/i18n';
+import './App.less';
+
 function App() {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const address = location.pathname.slice(9);
+  const boards = location.pathname.slice(0, 7);
+  const style =
+    address === '' ? { padding: '0', marginTop: 64 } : { padding: '0 20px', marginTop: 64 };
+  const bgStyle =
+    address === '' ? { padding: '0', height: '100%' } : { padding: '24px 0', height: '100%' };
+
   useEffect(() => {
     const tokenCheck = () => {
       const token = localStorage.getItem('token') as string;
+
       if (token) {
         const dateNow = new Date().getTime();
         const decoded = jwtDecode<JwtPayload>(token);
@@ -31,18 +44,14 @@ function App() {
           localStorage.removeItem('token');
           navigate('/welcome');
         }, expTime);
+
         return () => clearTimeout(timer);
       }
     };
+
     tokenCheck();
   });
-  const location = useLocation();
-  const address = location.pathname.slice(9);
-  const boards = location.pathname.slice(0, 7);
-  const style =
-    address === '' ? { padding: '0', marginTop: 64 } : { padding: '0 20px', marginTop: 64 };
-  const bgStyle =
-    address === '' ? { padding: '0', height: '100%' } : { padding: '24px 0', height: '100%' };
+
   return (
     <Layout style={{ minHeight: '100vh' }}>
       {(location.pathname === '/' ||
@@ -66,6 +75,7 @@ function App() {
           </Routes>
         </div>
       </Content>
+
       {(location.pathname === '/' ||
         location.pathname === '/signin' ||
         location.pathname === '/signup' ||

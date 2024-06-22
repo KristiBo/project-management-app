@@ -1,23 +1,26 @@
-import { Form, Input, Button, message } from 'antd';
-import axios from 'axios';
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
+import axios from 'axios';
+import { useTranslation } from 'react-i18next';
+import { Form, Input, Button, message } from 'antd';
+
 import ColumnService from '../api-services/ColumnService';
 import { IColumn } from '../api-services/types/types';
 import { useAppDispatch } from '../hooks';
 
 export const CreateColumnForm = (props: { cancel: () => void; data: { title: string } }) => {
   const location = useLocation();
-  const boardId = location.pathname.slice(9);
   const dispatch = useAppDispatch();
   const [confirmLoading, setConfirmLoading] = useState(false);
   const { t } = useTranslation();
+
+  const boardId = location.pathname.slice(9);
   const titleMsg = t('titleMsg');
   const titleInvalidMsg = t('titleInvalidMsg');
 
   const onFinish = async (values: IColumn) => {
     setConfirmLoading(true);
+
     try {
       const response = await ColumnService.createColumn(boardId, values.title);
       dispatch({ type: 'columnModalDataAction', payload: response.data });
@@ -53,6 +56,7 @@ export const CreateColumnForm = (props: { cancel: () => void; data: { title: str
       >
         <Input />
       </Form.Item>
+
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
         <Button className="back" onClick={props.cancel}>
           {t('back')}
